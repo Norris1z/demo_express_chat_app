@@ -97,7 +97,7 @@ function isAuthenticated(req,res,next){
 };
 
 function redirectIfAuthenticated(req,res,next){
-  if(req.isAuthenticated()) res.redirect('/chat');
+  if(req.isAuthenticated()) return res.redirect('/chat');
   return next();
 }
 
