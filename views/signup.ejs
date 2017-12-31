@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Norris Chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+    <body>
+            <script src="https://use.typekit.net/ayg4pcz.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <div class="container">
+    <h1 class="welcome text-center">Welcome to <br> Norris Chat</h1>
+        <div class="card card-container">
+            <% if(messages.error) { %>
+                <% let errors = JSON.parse(messages.error); %>
+                <ul>
+                    <% errors.forEach((error)=>{ %>
+                        <li><%= error.msg %></li>
+                    <% }); %>
+                </ul>
+            <% } %>
+        <h2 class='login_title text-center'>SignUp</h2>
+        <hr>
+            <form class="form-signin" method="POST" action="/signup?_csrf=<%= csrf %>" enctype="multipart/form-data">
+                <span id="reauth-email" class="reauth-email"></span>
+                <p class="input_title">Username</p>
+                <input type="text" id="inputEmail" name="username" class="login_box" autofocus>
+                <p class="input_title">Password</p>
+                <input type="password" id="inputPassword" name="password" class="login_box" >
+                <p class="input_title">Picture</p>
+                <input type="file"  name="picture" class="login_box">
+                <button class="btn btn-lg btn-primary" type="submit">Signup</button>
+            </form><!-- /form -->
+            <p>Already have an account? <a href="/">Login</a></p>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    <script src="https://unpkg.com/sweetalert2@7.3.0/dist/sweetalert2.all.js">
+    </script>
+    <% if(messages.user_exists){ %>
+        <script>
+            swal(
+                'Sorry!',
+                'A User with your username already exists!',
+                'error'
+            )
+        </script>
+    <% } %>
+    </body>
+</html>

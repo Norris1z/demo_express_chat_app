@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Norris Chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+    <body>
+            <!-- <script src="https://use.typekit.net/ayg4pcz.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script> -->
+
+    <div class="container">
+    <h1 class="welcome text-center">Welcome to <br> Norris Chat</h1>
+        <div class="card card-container">
+        <h2 class='login_title text-center'>Login</h2>
+        <hr>
+
+            <form class="form-signin" method="POST" action="/login">
+                <input type="hidden" name="_csrf" value="<%= csrf %>"
+                <span id="reauth-email" class="reauth-email"></span>
+                <p class="input_title">Username</p>
+                <input type="text" id="inputEmail" class="login_box" name="username" autofocus>
+                <p class="input_title">Password</p>
+                <input type="password" id="inputPassword" class="login_box" name="password">
+                <button class="btn btn-lg btn-primary" type="submit">Login</button>
+            </form><!-- /form -->
+            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        </div><!-- /card-container -->
+        <script src="https://unpkg.com/sweetalert2@7.3.0/dist/sweetalert2.all.js">
+        </script>
+        <% if(messages.info){ %>
+            <script>
+                swal(
+                    'Success!',
+                    'Registration Successful!',
+                    'success'
+                )
+            </script>
+        <% }else if(messages.auth_error){ %>
+            <script>
+                swal(
+                    'Sorry!',
+                    'You cannot be logged in with these credentials!',
+                    'error'
+                )
+            </script>
+        <% }else if(messages.req_auth){ %>
+            <script>
+                swal(
+                    'Sorry!',
+                    'You must be logged to view this page!',
+                    'error'
+                )
+            </script>
+        <% } %>
+    </div><!-- /container -->
+    </body>
+</html>
