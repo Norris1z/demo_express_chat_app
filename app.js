@@ -14,7 +14,7 @@ var flash = require('express-flash');
 var passport = require('passport');
 var User = require('./models/user');
 
-mongoose.connect('mongodb://localhost:27017/chat');
+mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
 
@@ -43,8 +43,8 @@ app.use(session({
   store: new (require('express-sessions'))({
       storage: 'mongodb',
       instance: mongoose, 
-      host: 'localhost',  
-      port: 27017, 
+      host: 'ds135537.mlab.com',  
+      port: 35537, 
       db: 'chat', 
       collection: 'sessions', 
       expire: 86400
